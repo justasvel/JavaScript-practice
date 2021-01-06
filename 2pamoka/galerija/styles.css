@@ -1,0 +1,8 @@
+body {
+    background-color: azure;
+}
+
+.item {
+    width: 25%;
+    cursor: pointer;
+}

@@ -14,9 +14,9 @@ form.addEventListener('submit', (e) => {
     console.log(randomNumber);
 
     if (guess < randomNumber) {
-        resultText.innerHTML = '<b>The guessed number is smaller</b>';
+        resultText.innerHTML = 'The number is bigger';
     } else if (guess > randomNumber) {
-        resultText.innerText = 'The guessed number is bigger';
+        resultText.innerText = 'The number is smaller';
     } else {
         resultText.textContent = 'You guessed the number!';
     }
