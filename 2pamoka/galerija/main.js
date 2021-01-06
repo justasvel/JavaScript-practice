@@ -1,26 +1,25 @@
 const image = document.querySelector('.main-image');
 const text = document.querySelector('#text');
-const picture1 = document.querySelector('#picture1');
-const picture2 = document.querySelector('#picture2');
-const picture3 = document.querySelector('#picture3');
-const picture4 = document.querySelector('#picture4');
+const gallery = document.querySelector('#gallery');
 
-picture1.addEventListener('click', () => {
-    image.src = "images/beach.jpg";
-    text.textContent = "Beach";
-});
-
-picture2.addEventListener('click', () => {
-    image.src = "images/city.jpg";
-    text.textContent = "City";
-});
-
-picture3.addEventListener('click', () => {
-    image.src = "images/flower.jpg";
-    text.textContent = "Flower";
-});
-
-picture4.addEventListener('click', () => {
-    image.src = "images/snow.jpg";
-    text.textContent = "Snow";
+gallery.addEventListener('click', (e) => {
+    switch(e.target.id) {
+        case 'picture1':
+            image.src = e.target.src;
+            text.textContent = e.target.alt;
+        break;
+        case 'picture2':
+            image.src = e.target.src;
+            text.textContent = e.target.alt;
+        break;
+        case 'picture3':
+            image.src = e.target.src;
+            text.textContent = e.target.alt;
+        break;
+        case 'picture4':
+            image.src = e.target.src;
+            text.textContent = e.target.alt;
+        break;
+        default:
+    }
 });
