@@ -19,17 +19,11 @@ const changeColor = (percentage) => {
     let progressBar = document.querySelector('.progress-bar');
 
     if (percentage < 40) {
-        progressBar.classList.add('bg-danger');
-        progressBar.classList.remove('bg-info');
-        progressBar.classList.remove('bg-success');
+        progressBar.setAttribute('class', 'progress-bar bg-danger');
     } else if (percentage < 70) {
-        progressBar.classList.add('bg-info');
-        progressBar.classList.remove('bg-danger');
-        progressBar.classList.remove('bg-success');
+        progressBar.setAttribute('class', 'progress-bar bg-info');
     } else {
-        progressBar.classList.add('bg-success');
-        progressBar.classList.remove('bg-danger');
-        progressBar.classList.remove('bg-info');
+        progressBar.setAttribute('class', 'progress-bar bg-success');
     }
 }
 
