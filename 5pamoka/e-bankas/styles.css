@@ -1,0 +1,15 @@
+.action {
+    width: 75%;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+span {
+    padding: 0 0.3rem;
+}
