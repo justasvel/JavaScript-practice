@@ -62,11 +62,19 @@ button {
     background-color: var(--color-4);
 }
 
+#doubleBtn {
+    background-color: rgb(1, 243, 118);
+}
+
 button:focus {
     outline: none;
 }
 
 #resetBtn {
+    display: none;
+}
+
+#doubleBtn {
     display: none;
 }
 

@@ -14,10 +14,12 @@ const player2Scoreboard = document.getElementById('player2Scoreboard');
 
 const rollBtn = document.getElementById('rollBtn');
 const resetBtn = document.getElementById('resetBtn');
+const doubleBtn = document.getElementById('doubleBtn');
 
 // Change buttons based on score
 const showResetBtn = () => {
     rollBtn.style.display = 'none';
+    doubleBtn.style.display = 'none';
     resetBtn.style.display = 'inline-block';
 }
 
@@ -26,26 +28,26 @@ const showRollBtn = () => {
     resetBtn.style.display = 'none';
 }
 
+//Generate random number
+const random = () => {
+    return Math.floor(Math.random() * 6) + 1;
+}
+
+
 // Roll dice functionality
 rollBtn.addEventListener('click', () => {
-    const randomNumber = Math.floor(Math.random() * 6) + 1;
+    const randomNumber = random();
 
     if ( player1Turn ) {
         player1Dice.textContent = randomNumber;
         player1Score += randomNumber;
 
-        player1Dice.classList.remove('active');
-        player2Dice.classList.add('active');
-        message.textContent = 'Player 2 Turn';
-        player1Scoreboard.textContent = player1Score;
+        player1InterfaceChange();
     } else {
         player2Dice.textContent = randomNumber;
         player2Score += randomNumber;
 
-        player2Dice.classList.remove('active');
-        player1Dice.classList.add('active');
-        message.textContent = 'Player 1 Turn';
-        player2Scoreboard.textContent = player2Score;
+        player2InterfaceChange();
     }
 
     if ( player1Score >= 20 ) {
@@ -62,6 +64,56 @@ rollBtn.addEventListener('click', () => {
 resetBtn.addEventListener('click', () => {
     reset();
 });
+
+//Double or Nothing button functionality
+doubleBtn.addEventListener('click', () => {
+    const randomNumber = random();
+
+    if ( player1Turn ) {
+        if ( randomNumber > 4 ) {
+            player1Dice.textContent = randomNumber;
+            player1Score += randomNumber;
+        } else if ( randomNumber <= 4 ) {
+            player1Dice.textContent = '🔥';
+            player1Score = 0;
+        }
+
+        player1InterfaceChange();
+
+    } else {
+        if ( randomNumber > 4 ) {
+            player2Dice.textContent = randomNumber;
+            player2Score += randomNumber;
+
+        } else if ( randomNumber <= 4 ) {
+            player2Dice.textContent = '🔥';
+            player2Score = 0;
+        }
+
+        player2InterfaceChange();
+    }
+
+    player1Turn = !player1Turn;
+});
+
+// Check if double or nothing button can be showed
+if ( player1Score >= 10 || player2Score >= 10 ) {
+    doubleBtn.style.display = 'inline-block';
+}
+
+const player1InterfaceChange = () => {
+    player1Dice.classList.remove('active');
+    player2Dice.classList.add('active');
+    message.textContent = 'Player 2 Turn';
+    player1Scoreboard.textContent = player1Score;
+}
+
+const player2InterfaceChange = () => {
+    player2Dice.classList.remove('active');
+    player1Dice.classList.add('active');
+    message.textContent = 'Player 1 Turn';
+    player2Scoreboard.textContent = player2Score;
+}
 
 // Reset game function
 const reset = () => {
