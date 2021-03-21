@@ -1,5 +1,5 @@
 // Variables for game state
-let player1Turn = true;
+let player1Turn = Math.random() < 0.5;
 let player1Score = 0;
 let player2Score = 0;
 
@@ -58,9 +58,15 @@ rollBtn.addEventListener('click', () => {
         showResetBtn();
     }
 
+    // Check if double or nothing button can be showed
+    if ( player1Score >= 10 || player2Score >= 10 ) {
+        doubleBtn.style.display = 'inline-block';
+    }
+
     player1Turn = !player1Turn;
 });
 
+// Reset Button functionality
 resetBtn.addEventListener('click', () => {
     reset();
 });
@@ -96,11 +102,6 @@ doubleBtn.addEventListener('click', () => {
     player1Turn = !player1Turn;
 });
 
-// Check if double or nothing button can be showed
-if ( player1Score >= 10 || player2Score >= 10 ) {
-    doubleBtn.style.display = 'inline-block';
-}
-
 const player1InterfaceChange = () => {
     player1Dice.classList.remove('active');
     player2Dice.classList.add('active');
@@ -127,7 +128,17 @@ const reset = () => {
     player2Scoreboard.textContent = player2Score;
     player2Dice.classList.remove('active');
     player1Dice.classList.add('active');
+    doubleBtn.style.display = 'none'
 
     // Button change
     showRollBtn();
 }
+
+// Change game interface based on whose turn it is
+window.addEventListener('load', () => {
+    if (player1Turn) {
+        player2InterfaceChange();
+    } else {
+        player1InterfaceChange();
+    }
+});
