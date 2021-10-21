@@ -71,3 +71,24 @@
         opacity: 1;
     }
 }
+
+.carousel-indicators {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    top: 90%;
+    justify-content: center;
+}
+
+.carousel-indicator {
+    margin: 0 5px;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 10px;
+    animation: fadeVisibility 0.5s;
+}
+
+.current-indicator {
+    background: red;
+}

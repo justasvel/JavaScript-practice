@@ -1,4 +1,5 @@
 const slides = document.getElementsByClassName('carousel-item');
+const indicators = document.getElementsByClassName('carousel-indicator')
 let slidePosition = 0;
 const totalSlides = slides.length;
 
@@ -12,7 +13,14 @@ function hideAllSlides() {
     }
 }
 
+function restartIndicators() {
+    for (let indicator of indicators) {
+        indicator.classList.remove('current-indicator')
+    }
+}
+
 function moveToNextSlide() {
+    restartIndicators()
     hideAllSlides();
     
     if (slidePosition === totalSlides - 1) {
@@ -22,9 +30,11 @@ function moveToNextSlide() {
     }
     
     slides[slidePosition].classList.add("carousel-item-visible");
+    indicators[slidePosition].classList.add('current-indicator')
 }
 
 function moveToPrevSlide() {
+    restartIndicators()
     hideAllSlides();
     
     if (slidePosition === 0) {
@@ -34,4 +44,5 @@ function moveToPrevSlide() {
     }
     
     slides[slidePosition].classList.add("carousel-item-visible");
+    indicators[slidePosition].classList.add('current-indicator')
 }
